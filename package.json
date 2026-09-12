@@ -1,7 +1,7 @@
 {
-  "name": "astro-obsidian-embed-plugin",
+  "name": "umbrella-island-diamond",
   "version": "1.1.0",
-  "description": "An Astro plugin for embedding Obsidian embeds in Markdown files. Layout is delegated to Embed.astro; the remark plugin only parses data.",
+  "description": "An Astro plugin for embedding Obsidian embeds in Markdown files. Fork of astro-embed-obsidian-plugin with layout (Embed.astro) and data (remark plugin) separated.",
   "main": "src/index.js",
   "exports": {
     ".": "./src/index.js",
@@ -20,9 +20,17 @@
     "obsidian",
     "markdown"
   ],
-  "author": "Pierre Nel <hello@pierre.io>",
-  "homepage": "https://github.com/pierrenel/astro-embed-obsidian-plugin",
+  "contributors": [
+    "Pierre Nel <hello@pierre.io> (original author)"
+  ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
   "dependencies": {
     "unist-util-visit": "^4.0.0",
     "js-yaml": "^4.1.0"
