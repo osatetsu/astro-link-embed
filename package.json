@@ -1,0 +1,34 @@
+{
+  "name": "astro-obsidian-embed-plugin",
+  "version": "1.1.0",
+  "description": "An Astro plugin for embedding Obsidian embeds in Markdown files. Layout is delegated to Embed.astro; the remark plugin only parses data.",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./components/Embed.astro": "./src/components/Embed.astro"
+  },
+  "type": "module",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "astro-plugin",
+    "astro",
+    "embed",
+    "obsidian",
+    "markdown"
+  ],
+  "author": "Pierre Nel <hello@pierre.io>",
+  "homepage": "https://github.com/pierrenel/astro-embed-obsidian-plugin",
+  "license": "MIT",
+  "dependencies": {
+    "unist-util-visit": "^4.0.0",
+    "js-yaml": "^4.1.0"
+  },
+  "peerDependencies": {
+    "astro": "^4.0.0"
+  }
+}
+
