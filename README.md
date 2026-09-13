@@ -46,7 +46,7 @@ The `remark` plugin (`src/remark-embed.js`) parses the YAML payload and forwards
 
 ## Credits
 
-Forked from [astro-embed-obsidian-plugin](https://github.com/pierrenel/astro-embed-obsidian-plugin) by Pierre Nel <hello@pierre.io>. Layout and data were separated in this fork. The package name `astro-link-embed` is a random three-word token with no special meaning.
+Forked from [astro-embed-obsidian-plugin](https://github.com/pierrenel/astro-embed-obsidian-plugin) by Pierre Nel <hello@pierre.io>. Layout and data were separated in this fork.
 
 ## License
 
