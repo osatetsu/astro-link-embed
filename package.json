@@ -1,11 +1,10 @@
 {
   "name": "astro-link-embed",
   "version": "0.0.1",
-  "description": "An Astro plugin for embedding Obsidian embeds in Markdown files. Fork of astro-embed-obsidian-plugin with layout (Embed.astro) and data (remark plugin) separated.",
+  "description": "An Astro remark plugin that renders Obsidian Link Embed YAML blocks as static HTML cards in Markdown files.",
   "main": "src/index.js",
   "exports": {
-    ".": "./src/index.js",
-    "./components/Embed.astro": "./src/components/Embed.astro"
+    ".": "./src/index.js"
   },
   "type": "module",
   "files": [
@@ -36,7 +35,15 @@
     "js-yaml": "^4.1.0"
   },
   "peerDependencies": {
-    "astro": "^4.0.0"
+    "@astrojs/markdown-remark": "^7.0.0",
+    "astro": "^7.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/markdown-remark": "^7.0.0",
+    "astro": "^7.0.0"
+  },
+  "scripts": {
+    "test": "node --test test/astro-build.test.js"
   }
 }
 

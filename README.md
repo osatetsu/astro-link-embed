@@ -1,53 +1,104 @@
 # astro-link-embed
 
-This Astro plugin allows you to easily embed content in your Markdown files using a custom code block syntax. It is a fork of [astro-embed-obsidian-plugin](https://github.com/pierrenel/astro-embed-obsidian-plugin) and is designed to work with the [Obsidian Link Embed plugin](https://github.com/Seraphli/obsidian-link-embed), which allows you to embed content in Obsidian markdown files.
+`astro-link-embed` renders [Obsidian Link Embed](https://github.com/Seraphli/obsidian-link-embed) YAML code blocks as static HTML link cards in Astro Markdown (`.md`) files.
+
+It is for standard Markdown only. It does not use Astro components or support MDX.
 
 ## Installation
 
-~~npm install astro-link-embed~~
+Install the package together with Astro 7 and its Unified Markdown processor:
 
-> [!IMPORTANT]
-> This software has not yet been published on *NPM*.
-> Please refer directly to the [GitHub repository](https://github.com/osatetsu/astro-link-embed).
+```sh
+npm install astro-link-embed @astrojs/markdown-remark
+```
 
-## Usage
+## Setup
 
-1. Add the plugin to your `astro.config.mjs` file:
+Add `remarkEmbed` to the existing Astro 7 Unified Markdown processor in `astro.config.mjs`. This plugin does not create or override `markdown.processor`.
 
-```javascript
+```js
 import { defineConfig } from 'astro/config';
-import embedObsidianPlugin from 'astro-link-embed';
+import { unified } from '@astrojs/markdown-remark';
+import { remarkEmbed } from 'astro-link-embed';
 
 export default defineConfig({
-  integrations: [embedObsidianPlugin()],
+  markdown: {
+    processor: unified({
+      remarkPlugins: [
+        // Existing remark plugins.
+        remarkEmbed,
+      ],
+    }),
+  },
 });
 ```
 
-2. In your Markdown files, use the following syntax to embed content:
+Keep all existing `remarkPlugins` and `rehypePlugins` in this same `unified()` configuration, then add `remarkEmbed` to `remarkPlugins`.
 
+## Usage
+
+Use an `embed` code block in any `.md` page:
+
+````md
+```embed
+title: "Example Title"
+image: "https://example.com/image.jpg"
+description: "This is an example description."
+url: "https://example.com"
+```
 ````
-  ```embed
-  title: "Example Title"
-  image: "https://example.com/image.jpg"
-  description: "This is an example description."
-  url: "https://example.com"
-  ```
-````
 
-The `remark` plugin (`src/remark-embed.js`) parses the YAML payload and forwards it to the Astro component `src/components/Embed.astro`, which owns all layout and styles. To restyle, edit `Embed.astro` only. To change the data shape (e.g. add an `author` field), edit `remark-embed.js` and `Embed.astro` together — no HTML strings embedded in the plugin.
+The plugin emits static HTML using these classes:
 
-## Layout vs. data
+- `.astro-link-embed`
+- `.astro-link-embed__link`
+- `.astro-link-embed__image`
+- `.astro-link-embed__body`
+- `.astro-link-embed__title`
+- `.astro-link-embed__description`
 
-| Concern            | File                            |
-| ------------------ | ------------------------------- |
-| YAML parsing       | `src/remark-embed.js`           |
-| Astro wiring       | `src/index.js`                  |
-| Layout & styles    | `src/components/Embed.astro`    |
+Add styles in the consuming Astro site's global stylesheet. For example:
 
-## Credits
+```css
+.astro-link-embed {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-block: 1rem;
+  max-width: 600px;
+  overflow: hidden;
+}
 
-Forked from [astro-embed-obsidian-plugin](https://github.com/pierrenel/astro-embed-obsidian-plugin) by Pierre Nel <hello@pierre.io>. Layout and data were separated in this fork.
+.astro-link-embed__link {
+  color: inherit;
+  display: flex;
+  text-decoration: none;
+}
+
+.astro-link-embed__image {
+  flex: 0 0 150px;
+  object-fit: cover;
+  width: 150px;
+}
+
+.astro-link-embed__body {
+  padding: 1rem;
+}
+
+.astro-link-embed__title {
+  margin: 0 0 0.5rem;
+}
+
+.astro-link-embed__description {
+  margin: 0;
+}
+```
+
+## Safety
+
+`title`, `description`, `url`, and `image` are HTML-escaped. Only absolute `http:` and `https:` URLs are allowed for `url` and `image`; other values are omitted. When `url` is valid, the card link receives `target="_blank"` and `rel="noopener noreferrer"`.
+
+If `url` is missing or invalid, the card is emitted without a link. If `image` is missing or invalid, the image is omitted.
 
 ## License
 
-MIT License — see `LICENSE` for the original copyright.
+MIT License. See `LICENSE`.
