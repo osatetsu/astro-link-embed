@@ -1,12 +1,14 @@
-# umbrella-island-diamond
+# astro-link-embed
 
 This Astro plugin allows you to easily embed content in your Markdown files using a custom code block syntax. It is a fork of [astro-embed-obsidian-plugin](https://github.com/pierrenel/astro-embed-obsidian-plugin) and is designed to work with the [Obsidian Link Embed plugin](https://github.com/Seraphli/obsidian-link-embed), which allows you to embed content in Obsidian markdown files.
 
 ## Installation
 
-```bash
-npm install umbrella-island-diamond
-```
+~~npm install astro-link-embed~~
+
+> [!IMPORTANT]
+> This software has not yet been published on *NPM*.
+> Please refer directly to the [GitHub repository](https://github.com/osatetsu/astro-link-embed).
 
 ## Usage
 
@@ -14,7 +16,7 @@ npm install umbrella-island-diamond
 
 ```javascript
 import { defineConfig } from 'astro/config';
-import embedObsidianPlugin from 'umbrella-island-diamond';
+import embedObsidianPlugin from 'astro-link-embed';
 
 export default defineConfig({
   integrations: [embedObsidianPlugin()],
@@ -44,7 +46,7 @@ The `remark` plugin (`src/remark-embed.js`) parses the YAML payload and forwards
 
 ## Credits
 
-Forked from [astro-embed-obsidian-plugin](https://github.com/pierrenel/astro-embed-obsidian-plugin) by Pierre Nel <hello@pierre.io>. Layout and data were separated in this fork. The package name `umbrella-island-diamond` is a random three-word token with no special meaning.
+Forked from [astro-embed-obsidian-plugin](https://github.com/pierrenel/astro-embed-obsidian-plugin) by Pierre Nel <hello@pierre.io>. Layout and data were separated in this fork. The package name `astro-link-embed` is a random three-word token with no special meaning.
 
 ## License
 

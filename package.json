@@ -1,6 +1,6 @@
 {
-  "name": "umbrella-island-diamond",
-  "version": "1.1.0",
+  "name": "astro-link-embed",
+  "version": "0.0.1",
   "description": "An Astro plugin for embedding Obsidian embeds in Markdown files. Fork of astro-embed-obsidian-plugin with layout (Embed.astro) and data (remark plugin) separated.",
   "main": "src/index.js",
   "exports": {
